@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     map.setCenter(centerPoint, 6);
 
-    const getBrews = async function(url, page){
+     async function getBrews(url, page){
         const results = await axios.get(url+page)
             .then(res=>{
                 return res.data
@@ -30,13 +30,12 @@ document.addEventListener('DOMContentLoaded', function(){
         breweries.push(getBrews(url, i))
     }
 
+    console.log(breweries);
+
     Promise.all(breweries)
         .then(function(r){
-         //   console.log(r)
-            breweries = r;
-        })
-        .then(function(){
-            breweries.forEach(brewery =>{
+            console.log(r);
+            r.forEach(brewery =>{
                 //console.log("Brewery", brewery.length)
                 brewery.forEach(brew=>{
                     if (
